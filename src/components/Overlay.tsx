@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion"
 import { useState } from "react"
 import Icon from "@/components/ui/icon"
+import { jsPDF } from "jspdf"
 
 type Category = "standing" | "sitting" | "lying"
 
@@ -223,6 +224,107 @@ export default function Overlay() {
     }
   }
 
+  const generatePDF = () => {
+    if (!activeCategory) return
+    const list = poses[activeCategory]
+    const label = categoryLabels[activeCategory]
+
+    const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" })
+    const pageW = doc.internal.pageSize.getWidth()
+    const margin = 18
+    const contentW = pageW - margin * 2
+    let y = 22
+
+    const addText = (text: string, size: number, style: "normal" | "bold" | "italic", color: [number, number, number], lineH: number, maxW?: number) => {
+      doc.setFontSize(size)
+      doc.setFont("helvetica", style)
+      doc.setTextColor(...color)
+      const lines = doc.splitTextToSize(text, maxW ?? contentW)
+      doc.text(lines, margin, y)
+      y += lines.length * lineH
+    }
+
+    const checkPage = (needed: number) => {
+      if (y + needed > 275) {
+        doc.addPage()
+        y = 22
+      }
+    }
+
+    // Title
+    doc.setFillColor(10, 10, 10)
+    doc.rect(0, 0, pageW, 16, "F")
+    doc.setFontSize(13)
+    doc.setFont("helvetica", "bold")
+    doc.setTextColor(255, 255, 255)
+    doc.text(`Позы для каталогов — ${label}`, margin, 11)
+    doc.setFontSize(8)
+    doc.setFont("helvetica", "normal")
+    doc.setTextColor(160, 160, 160)
+    doc.text("poseref.ru · 30 референсов для моделей и фотографов", pageW - margin, 11, { align: "right" })
+    y = 28
+
+    list.forEach((pose, i) => {
+      checkPage(52)
+
+      // Pose number + name
+      doc.setDrawColor(220, 220, 220)
+      doc.setLineWidth(0.3)
+      doc.line(margin, y - 2, pageW - margin, y - 2)
+      y += 2
+
+      doc.setFontSize(9)
+      doc.setFont("helvetica", "bold")
+      doc.setTextColor(160, 160, 160)
+      doc.text(`${String(i + 1).padStart(2, "0")}`, margin, y)
+
+      doc.setFontSize(13)
+      doc.setFont("helvetica", "bold")
+      doc.setTextColor(20, 20, 20)
+      doc.text(pose.name, margin + 8, y)
+      y += 6
+
+      // Accent
+      doc.setFontSize(8)
+      doc.setFont("helvetica", "italic")
+      doc.setTextColor(100, 100, 100)
+      doc.text(`Акцент: ${pose.accent}`, margin, y)
+      y += 5
+
+      // Description
+      addText(pose.description, 9, "normal", [40, 40, 40], 4.5, contentW)
+      y += 2
+
+      // Tip
+      doc.setFillColor(245, 245, 245)
+      const tipLines = doc.splitTextToSize(`Модели: ${pose.tip}`, contentW - 8)
+      const photoLines = doc.splitTextToSize(`Фотографу: ${pose.photographer}`, contentW - 8)
+      const boxH = (tipLines.length + photoLines.length) * 4 + 8
+      checkPage(boxH + 4)
+      doc.roundedRect(margin, y, contentW, boxH, 2, 2, "F")
+      doc.setFontSize(8)
+      doc.setFont("helvetica", "bold")
+      doc.setTextColor(80, 80, 80)
+      doc.text(tipLines, margin + 4, y + 5)
+      doc.setFont("helvetica", "normal")
+      doc.setTextColor(100, 100, 100)
+      doc.text(photoLines, margin + 4, y + 5 + tipLines.length * 4 + 2)
+      y += boxH + 8
+    })
+
+    // Footer on last page
+    const totalPages = doc.getNumberOfPages()
+    for (let p = 1; p <= totalPages; p++) {
+      doc.setPage(p)
+      doc.setFontSize(7)
+      doc.setFont("helvetica", "normal")
+      doc.setTextColor(180, 180, 180)
+      doc.text(`Страница ${p} из ${totalPages}`, pageW / 2, 290, { align: "center" })
+    }
+
+    doc.save(`позы-${label.toLowerCase()}.pdf`)
+  }
+
   return (
     <div className="pointer-events-none absolute inset-0 z-10">
       {/* Header */}
@@ -341,6 +443,15 @@ export default function Overlay() {
                 />
               ))}
             </div>
+
+            {/* PDF Export */}
+            <button
+              onClick={generatePDF}
+              className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl border border-white/20 bg-white/5 hover:bg-white/15 hover:border-white/40 text-white/80 hover:text-white text-xs tracking-wider transition-all duration-200"
+            >
+              <Icon name="Download" size={13} />
+              Скачать все {activePoses!.length} поз в PDF
+            </button>
           </motion.div>
         )}
       </AnimatePresence>
