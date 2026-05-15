@@ -259,11 +259,7 @@ export default function Scene() {
         <FloatingImage key={index} texture={texture} index={index} rotation={rotation} />
       ))}
 
-      {/* Reflection plane */}
-      <mesh position={[0, -2.5, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-        <planeGeometry args={[30, 30]} />
-        <meshStandardMaterial color="#0a0a0a" transparent opacity={0.2} roughness={0.1} metalness={0.9} />
-      </mesh>
+
     </>
   )
 }
