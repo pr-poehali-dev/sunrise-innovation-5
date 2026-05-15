@@ -3,17 +3,23 @@ import { useFrame, useThree } from "@react-three/fiber"
 import { useTexture } from "@react-three/drei"
 import * as THREE from "three"
 
-const standingImg = "https://cdn.poehali.dev/projects/64ce6965-fcc2-46b7-be6c-95f6cb962f5c/files/28120729-9c0a-4633-931b-f6a95900425b.jpg"
-const sittingImg = "https://cdn.poehali.dev/projects/64ce6965-fcc2-46b7-be6c-95f6cb962f5c/files/c84540cd-770b-4d24-bcb4-4b9d5c0d70b7.jpg"
-const lyingImg = "https://cdn.poehali.dev/projects/64ce6965-fcc2-46b7-be6c-95f6cb962f5c/files/98488d92-d99b-47db-83cf-3b72aa3f7a53.jpg"
-
 const images = [
-  standingImg, sittingImg, lyingImg,
-  standingImg, sittingImg, lyingImg,
-  standingImg, sittingImg, lyingImg,
-  standingImg, sittingImg, lyingImg,
-  standingImg, sittingImg, lyingImg,
-  standingImg,
+  "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=600&q=80",
+  "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80",
+  "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&q=80",
+  "https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600&q=80",
+  "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=600&q=80",
+  "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&q=80",
+  "https://images.unsplash.com/photo-1475180098004-ca77a66827be?w=600&q=80",
+  "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&q=80",
+  "https://images.unsplash.com/photo-1492288991661-058aa541ff43?w=600&q=80",
+  "https://images.unsplash.com/photo-1519235624215-85175d5eb36e?w=600&q=80",
+  "https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=600&q=80",
+  "https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=600&q=80",
+  "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&q=80",
+  "https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600&q=80",
+  "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=600&q=80",
+  "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80",
 ]
 
 const imagePositions = [
