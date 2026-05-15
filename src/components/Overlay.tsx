@@ -279,7 +279,6 @@ export default function Overlay() {
       }
     }
 
-    // Title
     doc.setFillColor(10, 10, 10)
     doc.rect(0, 0, pageW, 16, "F")
     doc.setFontSize(13)
@@ -295,7 +294,6 @@ export default function Overlay() {
     list.forEach((pose, i) => {
       checkPage(52)
 
-      // Pose number + name
       doc.setDrawColor(220, 220, 220)
       doc.setLineWidth(0.3)
       doc.line(margin, y - 2, pageW - margin, y - 2)
@@ -312,18 +310,15 @@ export default function Overlay() {
       doc.text(pose.name, margin + 8, y)
       y += 6
 
-      // Accent
       doc.setFontSize(8)
       doc.setFont("helvetica", "italic")
       doc.setTextColor(100, 100, 100)
       doc.text(`Акцент: ${pose.accent}`, margin, y)
       y += 5
 
-      // Description
       addText(pose.description, 9, "normal", [40, 40, 40], 4.5, contentW)
       y += 2
 
-      // Tip
       doc.setFillColor(245, 245, 245)
       const tipLines = doc.splitTextToSize(`Модели: ${pose.tip}`, contentW - 8)
       const photoLines = doc.splitTextToSize(`Фотографу: ${pose.photographer}`, contentW - 8)
@@ -340,7 +335,6 @@ export default function Overlay() {
       y += boxH + 8
     })
 
-    // Footer on last page
     const totalPages = doc.getNumberOfPages()
     for (let p = 1; p <= totalPages; p++) {
       doc.setPage(p)
