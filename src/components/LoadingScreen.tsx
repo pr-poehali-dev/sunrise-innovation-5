@@ -27,10 +27,18 @@ export default function LoadingScreen() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="font-serif text-4xl mb-4"
+          className="font-serif text-3xl mb-2 tracking-wide"
         >
-          Загрузка
+          Позы для каталогов
         </motion.div>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="text-white/40 text-xs tracking-widest mb-4"
+        >
+          30 референсов · модели · фотографы
+        </motion.p>
         <motion.div
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
