@@ -3,26 +3,29 @@ import { useFrame, useThree } from "@react-three/fiber"
 import { useTexture } from "@react-three/drei"
 import * as THREE from "three"
 
+const CDN = "https://cdn.poehali.dev/projects/64ce6965-fcc2-46b7-be6c-95f6cb962f5c/files"
+
 const images = [
   // Стоя
-  "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
-  "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=600&q=80",
-  "https://images.unsplash.com/photo-1550614000-4895a10e1bfd?w=600&q=80",
-  "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&q=80",
-  "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80",
+  `${CDN}/5dc0d39e-a04f-4c79-99c4-2cd4030afd0c.jpg`,
+  `${CDN}/0168435b-6eba-4a9f-b40a-ed17c95adb5c.jpg`,
+  `${CDN}/1d7fcb58-164d-4176-a7d7-5127ebecd7c9.jpg`,
+  `${CDN}/f6bf4289-9bff-4496-a9bf-7d4c414a2b2c.jpg`,
   // Сидя
-  "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=600&q=80",
-  "https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600&q=80",
-  "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=600&q=80",
-  "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&q=80",
-  "https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=600&q=80",
+  `${CDN}/15596972-bcc6-42ba-816c-0d96e4fccc7c.jpg`,
+  `${CDN}/d75a8a2f-47ad-4156-9e84-dd4baa4a1453.jpg`,
+  `${CDN}/b46412d0-0184-47b3-bcc2-495dca35f58f.jpg`,
   // Лёжа
-  "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&q=80",
-  "https://images.unsplash.com/photo-1492288991661-058aa541ff43?w=600&q=80",
-  "https://images.unsplash.com/photo-1519235624215-85175d5eb36e?w=600&q=80",
-  "https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=600&q=80",
-  "https://images.unsplash.com/photo-1475180098004-ca77a66827be?w=600&q=80",
-  "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=600&q=80",
+  `${CDN}/7f7594f3-fc77-45a1-a43d-97e9fafcc5f4.jpg`,
+  `${CDN}/593bd625-7747-419d-96b7-e5f1699c5ae6.jpg`,
+  `${CDN}/35708e23-0ca0-4c50-beb5-523a06db5c75.jpg`,
+  // Повторы для объёма галереи
+  `${CDN}/5dc0d39e-a04f-4c79-99c4-2cd4030afd0c.jpg`,
+  `${CDN}/1d7fcb58-164d-4176-a7d7-5127ebecd7c9.jpg`,
+  `${CDN}/15596972-bcc6-42ba-816c-0d96e4fccc7c.jpg`,
+  `${CDN}/7f7594f3-fc77-45a1-a43d-97e9fafcc5f4.jpg`,
+  `${CDN}/0168435b-6eba-4a9f-b40a-ed17c95adb5c.jpg`,
+  `${CDN}/593bd625-7747-419d-96b7-e5f1699c5ae6.jpg`,
 ]
 
 const imagePositions = [
