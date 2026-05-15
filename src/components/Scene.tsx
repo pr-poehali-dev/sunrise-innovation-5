@@ -4,22 +4,25 @@ import { useTexture } from "@react-three/drei"
 import * as THREE from "three"
 
 const images = [
-  "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=600&q=80",
-  "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80",
+  // Стоя
+  "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+  "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=600&q=80",
+  "https://images.unsplash.com/photo-1550614000-4895a10e1bfd?w=600&q=80",
   "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&q=80",
+  "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80",
+  // Сидя
+  "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=600&q=80",
   "https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600&q=80",
   "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=600&q=80",
   "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&q=80",
-  "https://images.unsplash.com/photo-1475180098004-ca77a66827be?w=600&q=80",
+  "https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=600&q=80",
+  // Лёжа
   "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&q=80",
   "https://images.unsplash.com/photo-1492288991661-058aa541ff43?w=600&q=80",
   "https://images.unsplash.com/photo-1519235624215-85175d5eb36e?w=600&q=80",
   "https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=600&q=80",
-  "https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=600&q=80",
-  "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&q=80",
-  "https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600&q=80",
+  "https://images.unsplash.com/photo-1475180098004-ca77a66827be?w=600&q=80",
   "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=600&q=80",
-  "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80",
 ]
 
 const imagePositions = [
